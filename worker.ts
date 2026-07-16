@@ -83,6 +83,24 @@ app.all('/telonime/*', async (c) => {
   }
 });
 
+// Redirect WordPress static assets to /teloapk/...
+app.all('/wp-content/*', (c) => {
+  const url = new URL(c.req.url);
+  return c.redirect(`/teloapk${url.pathname}${url.search}`, 301);
+});
+app.all('/wp-includes/*', (c) => {
+  const url = new URL(c.req.url);
+  return c.redirect(`/teloapk${url.pathname}${url.search}`, 301);
+});
+app.all('/wp-json/*', (c) => {
+  const url = new URL(c.req.url);
+  return c.redirect(`/teloapk${url.pathname}${url.search}`, 301);
+});
+app.all('/wp-admin/*', (c) => {
+  const url = new URL(c.req.url);
+  return c.redirect(`/teloapk${url.pathname}${url.search}`, 301);
+});
+
 app.all('/teloapk/*', async (c) => {
   const url = new URL(c.req.url);
   const cleanPathname = url.pathname.substring('/teloapk'.length).replace(/teloapk/gi, 'liteapks');

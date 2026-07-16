@@ -848,6 +848,11 @@ async function startServer() {
     }
   }));
 
+  // Redirect wp-content, wp-includes, wp-json, wp-admin to /teloapk/...
+  app.use(['/wp-content', '/wp-includes', '/wp-json', '/wp-admin'], (req, res) => {
+    return res.redirect(301, `/teloapk${req.originalUrl}`);
+  });
+
   // Intercept and redirect download-related paths directly to LiteAPKs to avoid Cloudflare 403/Turnstile issues
   app.use((req, res, next) => {
     const isDownloadPath = req.path.startsWith('/teloapk/download') || 
