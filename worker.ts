@@ -22,6 +22,7 @@ app.all('/telonime/*', async (c) => {
   headers.delete('cf-ipcountry');
   headers.delete('cf-ray');
   headers.delete('cf-visitor');
+  headers.delete('accept-encoding');
 
   try {
     const response = await fetch(targetUrl, {
@@ -106,6 +107,7 @@ app.all('/teloapk/*', async (c) => {
   headers.delete('cf-ipcountry');
   headers.delete('cf-ray');
   headers.delete('cf-visitor');
+  headers.delete('accept-encoding');
 
   try {
     const response = await fetch(targetUrl, {
