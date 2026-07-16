@@ -33,6 +33,8 @@ app.all('/telonime/*', async (c) => {
     resHeaders.delete('X-Frame-Options');
     resHeaders.delete('Content-Security-Policy');
     resHeaders.delete('Content-Security-Policy-Report-Only');
+    resHeaders.delete('content-encoding');
+    resHeaders.delete('content-length');
     resHeaders.set('Access-Control-Allow-Origin', '*');
 
     const contentType = response.headers.get('content-type') || '';
@@ -114,6 +116,8 @@ app.all('/teloapk/*', async (c) => {
     resHeaders.delete('X-Frame-Options');
     resHeaders.delete('Content-Security-Policy');
     resHeaders.delete('Content-Security-Policy-Report-Only');
+    resHeaders.delete('content-encoding');
+    resHeaders.delete('content-length');
     resHeaders.set('Access-Control-Allow-Origin', '*');
 
     const contentType = response.headers.get('content-type') || '';

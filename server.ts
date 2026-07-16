@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import zlib from "zlib";
 import { createServer as createViteServer } from "vite";
 import { createProxyMiddleware, responseInterceptor } from 'http-proxy-middleware';
 
@@ -770,6 +771,22 @@ async function startServer() {
     return html.replace(/<\/body>/i, buttonHtml + '</body>');
   };
 
+  const decompressIfNeeded = (buffer: Buffer, contentEncoding?: string): Buffer => {
+    if (!contentEncoding) return buffer;
+    try {
+      if (contentEncoding.includes('gzip')) {
+        return zlib.gunzipSync(buffer);
+      } else if (contentEncoding.includes('deflate')) {
+        return zlib.inflateSync(buffer);
+      } else if (contentEncoding.includes('br')) {
+        return zlib.brotliDecompressSync(buffer);
+      }
+    } catch (err) {
+      console.error('Failed to decompress proxy response buffer:', err);
+    }
+    return buffer;
+  };
+
   // Proxy for telonime
   app.use('/telonime', createProxyMiddleware({
     target: 'https://anoboy.xyz',
@@ -778,7 +795,8 @@ async function startServer() {
     selfHandleResponse: true,
     headers: {
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      'Referer': 'https://anoboy.xyz/'
+      'Referer': 'https://anoboy.xyz/',
+      'Accept-Encoding': 'identity'
     },
     on: {
       proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
@@ -787,9 +805,16 @@ async function startServer() {
         res.removeHeader('Content-Security-Policy');
         res.removeHeader('Content-Security-Policy-Report-Only');
 
+        const contentEncoding = proxyRes.headers['content-encoding'];
+        let decompressedBuffer = responseBuffer;
+        if (contentEncoding) {
+          decompressedBuffer = decompressIfNeeded(responseBuffer, contentEncoding);
+          res.removeHeader('content-encoding');
+        }
+
         const contentType = proxyRes.headers['content-type'];
         if (contentType && contentType.includes('text/html')) {
-          let html = responseBuffer.toString('utf8');
+          let html = decompressedBuffer.toString('utf8');
           
           const isPlayerPage = req.url ? (req.url.includes('yup.php') || req.url.includes('embed') || req.url.includes('player') || req.url.includes('uploads') || req.url.includes('adsbatch')) : false;
 
@@ -810,11 +835,11 @@ async function startServer() {
           
           return html;
         } else if (contentType && contentType.includes('text/css')) {
-          let css = responseBuffer.toString('utf8');
+          let css = decompressedBuffer.toString('utf8');
           css = css.replace(/url\((["']?)\/(?!\/)/g, 'url($1/telonime/');
           return css;
         }
-        return responseBuffer;
+        return decompressedBuffer;
       })
     }
   }));
@@ -840,7 +865,8 @@ async function startServer() {
     selfHandleResponse: true,
     headers: {
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      'Referer': 'https://liteapks.com/'
+      'Referer': 'https://liteapks.com/',
+      'Accept-Encoding': 'identity'
     },
     on: {
       proxyRes: responseInterceptor(async (responseBuffer, proxyRes, req, res) => {
@@ -849,9 +875,16 @@ async function startServer() {
         res.removeHeader('Content-Security-Policy');
         res.removeHeader('Content-Security-Policy-Report-Only');
 
+        const contentEncoding = proxyRes.headers['content-encoding'];
+        let decompressedBuffer = responseBuffer;
+        if (contentEncoding) {
+          decompressedBuffer = decompressIfNeeded(responseBuffer, contentEncoding);
+          res.removeHeader('content-encoding');
+        }
+
         const contentType = proxyRes.headers['content-type'];
         if (contentType && contentType.includes('text/html')) {
-          let html = responseBuffer.toString('utf8');
+          let html = decompressedBuffer.toString('utf8');
           
           // 1. Rewrite relative absolute paths
           html = html.replace(/(href|src|action|data-video|data-src)=(["'])\/([^/])/gi, '$1=$2/teloapk/$3');
@@ -869,11 +902,11 @@ async function startServer() {
           
           return injectFloatingButton(html);
         } else if (contentType && contentType.includes('text/css')) {
-          let css = responseBuffer.toString('utf8');
+          let css = decompressedBuffer.toString('utf8');
           css = css.replace(/url\((["']?)\/(?!\/)/g, 'url($1/teloapk/');
           return css;
         }
-        return responseBuffer;
+        return decompressedBuffer;
       })
     }
   }));
