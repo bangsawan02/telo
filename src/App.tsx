@@ -39,13 +39,13 @@ function Home() {
         <motion.div variants={itemVariants} className="text-center space-y-3">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-zinc-900 border border-zinc-800 text-zinc-400 text-xs font-medium tracking-wide mb-2">
             <Compass className="w-3.5 h-3.5 text-orange-500 animate-spin-slow" />
-            <span>UNIVERSAL CONTENT ACCESS PORTAL</span>
+            <span>PORTAL RESMI TELONIME &amp; TELOAPK</span>
           </div>
           <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-white">
-            Media <span className="bg-gradient-to-r from-orange-400 via-zinc-100 to-emerald-400 bg-clip-text text-transparent">Hub</span>
+            Telonime &amp; <span className="bg-gradient-to-r from-orange-400 via-zinc-100 to-emerald-400 bg-clip-text text-transparent">Teloapk</span>
           </h1>
           <p className="text-zinc-400 text-sm max-w-sm mx-auto leading-relaxed">
-            Pintu gerbang modern untuk menikmati streaming anime terbaru dan koleksi aplikasi modifikasi terpopuler.
+            Portal utama streaming anime subtitle Indonesia terlengkap dan download ribuan aplikasi serta game APK MOD premium gratis.
           </p>
         </motion.div>
 
