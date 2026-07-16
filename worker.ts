@@ -8,7 +8,8 @@ app.get('/api/health', (c) => c.json({ status: 'ok' }));
 
 app.all('/telonime/*', async (c) => {
   const url = new URL(c.req.url);
-  const subpath = url.pathname.substring('/telonime'.length) + url.search;
+  const cleanPathname = url.pathname.substring('/telonime'.length).replace(/telonime/gi, 'anoboy');
+  const subpath = cleanPathname + url.search;
   const targetUrl = `https://anoboy.xyz${subpath}`;
 
   const headers = new Headers(c.req.raw.headers);
@@ -83,7 +84,8 @@ app.all('/telonime/*', async (c) => {
 
 app.all('/teloapk/*', async (c) => {
   const url = new URL(c.req.url);
-  const subpath = url.pathname.substring('/teloapk'.length) + url.search;
+  const cleanPathname = url.pathname.substring('/teloapk'.length).replace(/teloapk/gi, 'liteapks');
+  const subpath = cleanPathname + url.search;
 
   const isDownloadPath = url.pathname.startsWith('/teloapk/download') || 
                          url.pathname.startsWith('/teloapk/file') || 

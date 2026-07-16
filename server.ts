@@ -791,7 +791,11 @@ async function startServer() {
   app.use('/telonime', createProxyMiddleware({
     target: 'https://anoboy.xyz',
     changeOrigin: true,
-    pathRewrite: { '^/telonime': '' },
+    pathRewrite: (path) => {
+      const parts = path.split('?');
+      const rewrittenPath = parts[0].replace(/^\/telonime/, '').replace(/telonime/gi, 'anoboy');
+      return rewrittenPath + (parts[1] ? '?' + parts[1] : '');
+    },
     selfHandleResponse: true,
     headers: {
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -861,7 +865,11 @@ async function startServer() {
   app.use('/teloapk', createProxyMiddleware({
     target: 'https://liteapks.com',
     changeOrigin: true,
-    pathRewrite: { '^/teloapk': '' },
+    pathRewrite: (path) => {
+      const parts = path.split('?');
+      const rewrittenPath = parts[0].replace(/^\/teloapk/, '').replace(/teloapk/gi, 'liteapks');
+      return rewrittenPath + (parts[1] ? '?' + parts[1] : '');
+    },
     selfHandleResponse: true,
     headers: {
       'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
