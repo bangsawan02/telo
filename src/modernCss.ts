@@ -18,7 +18,7 @@ export const modernCss = `
     .wrap {
       background: transparent !important;
       border: none !important;
-      box-shadow: none !important;
+
       padding: 0 !important;
       margin: 0 !important;
     }
@@ -31,9 +31,9 @@ export const modernCss = `
     }
     
     #menu-icon {
-      background-color: rgba(255, 255, 255, 0.9) !important;
+      background-color: #ffffff !important;
       border-bottom: 1px solid #e2e8f0 !important;
-      padding: 16px 24px !important;
+      padding: 8px 16px !important;
       display: flex !important;
       justify-content: space-between !important;
       align-items: center !important;
@@ -41,7 +41,6 @@ export const modernCss = `
       position: sticky !important;
       top: 0 !important;
       z-index: 1000 !important;
-      backdrop-filter: blur(12px) !important;
       max-width: 100% !important;
     }
     
@@ -112,15 +111,15 @@ export const modernCss = `
     .nav-search input:focus {
       outline: none !important;
       border-color: #ff7a00 !important;
-      box-shadow: 0 0 0 2px rgba(255, 122, 0, 0.2) !important;
+
     }
     
     #nav-responsive {
       background: #ffffff !important;
-      padding: 12px 24px !important;
+      padding: 8px 16px !important;
       border-bottom: 1px solid #e2e8f0 !important;
       display: block !important;
-      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05) !important;
+
       position: static !important;
       width: auto !important;
       max-width: 1200px !important;
@@ -158,7 +157,7 @@ export const modernCss = `
       background: #ff7a00 !important;
       color: #ffffff !important;
       border-color: #ff7a00 !important;
-      box-shadow: 0 4px 12px rgba(255, 122, 0, 0.2) !important;
+
     }
     
     .home_index {
@@ -190,13 +189,13 @@ export const modernCss = `
       width: auto !important;
       margin: 0 !important;
       padding: 0 !important;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05) !important;
+
     }
     
     .amv:hover {
       transform: translateY(-4px) !important;
       border-color: #ff7a00 !important;
-      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08) !important;
+
     }
     
     .amv img {
@@ -212,11 +211,12 @@ export const modernCss = `
     }
     
     .amvj {
+      position: static !important;
       padding: 12px !important;
       flex-grow: 1 !important;
       display: flex !important;
       align-items: flex-start !important;
-      background: transparent !important;
+      background: #ffffff !important;
     }
     
     .ibox1 {
@@ -235,13 +235,20 @@ export const modernCss = `
     }
     
     .jamup {
-      background: #f8fafc !important;
-      color: #64748b !important;
+      position: absolute !important;
+      top: 8px !important;
+      right: 8px !important;
+      bottom: auto !important;
+      background: #0f172a !important;
+      color: #ffffff !important;
+
       font-family: 'JetBrains Mono', monospace !important;
-      font-size: 11px !important;
-      padding: 6px 12px !important;
-      border-top: 1px solid #e2e8f0 !important;
-      text-align: left !important;
+      font-size: 10px !important;
+      font-weight: 600 !important;
+      padding: 4px 8px !important;
+      border-radius: 6px !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      z-index: 10 !important;
     }
     
     #jadwal {
@@ -253,7 +260,7 @@ export const modernCss = `
       border-radius: 12px !important;
       padding: 16px !important;
       box-sizing: border-box !important;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+
     }
     
     #jadwal table {
@@ -345,7 +352,7 @@ export const modernCss = `
       padding: 24px !important;
       box-sizing: border-box !important;
       margin-bottom: 24px !important;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+
     }
     
     .column-three-fourth > img {
@@ -354,7 +361,7 @@ export const modernCss = `
       height: auto !important;
       margin: 0 auto 20px auto !important;
       display: block !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1) !important;
+
     }
     
     .unduhan {
@@ -393,14 +400,14 @@ export const modernCss = `
       border-radius: 16px !important;
       border: 4px solid #1e293b !important;
       background: #000000 !important;
-      box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04), 0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+
       margin: 24px 0 !important;
-      transition: border-color 0.3s ease, box-shadow 0.3s ease !important;
+
     }
     
     #mediaplayer:hover {
       border-color: #ff7a00 !important;
-      box-shadow: 0 20px 25px -5px rgba(255, 122, 0, 0.15), 0 10px 10px -5px rgba(255, 122, 0, 0.1) !important;
+
     }
     
     #fplay {
@@ -412,7 +419,7 @@ export const modernCss = `
       display: flex !important;
       flex-direction: column !important;
       gap: 12px !important;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+
     }
 
     .vmiror {
@@ -438,7 +445,7 @@ export const modernCss = `
       align-items: center !important;
       justify-content: center !important;
       margin: 2px !important;
-      box-shadow: none !important;
+
       transition: all 0.2s !important;
     }
     
@@ -446,7 +453,7 @@ export const modernCss = `
       background: #ff7a00 !important;
       color: #ffffff !important;
       border-color: #ff7a00 !important;
-      box-shadow: 0 4px 12px rgba(255, 122, 0, 0.3) !important;
+
     }
     
     #navigasi {
@@ -489,7 +496,7 @@ export const modernCss = `
       border-radius: 12px !important;
       padding: 20px !important;
       margin-top: 24px !important;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+
     }
     
     .singlelink .hq {
@@ -545,7 +552,7 @@ export const modernCss = `
       border-radius: 12px !important;
       padding: 20px !important;
       margin: 24px 0 !important;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+
       color: #334155 !important;
     }
     
@@ -606,7 +613,7 @@ export const modernCss = `
       border-radius: 12px !important;
       padding: 24px !important;
       margin: 24px 0 !important;
-      box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05) !important;
+
     }
     
     .sisi {
@@ -636,7 +643,7 @@ export const modernCss = `
       border-radius: 8px !important;
       max-width: 240px !important;
       height: auto !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05) !important;
+
     }
     
     .entry-title {
@@ -749,7 +756,7 @@ export const modernCss = `
 
 export const injectFloatingButton = (html: string) => {
   const buttonHtml = `
-    <a href="/" style="position: fixed; bottom: 24px; right: 24px; z-index: 999999; background: #ff7a00; color: #ffffff; padding: 12px 20px; border-radius: 30px; font-family: 'Inter', sans-serif; text-decoration: none; box-shadow: 0 10px 25px rgba(255,122,0,0.4); border: none; font-size: 14px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s; box-shadow: 0 8px 16px rgba(0,0,0,0.3);">
+    <a href="/" style="position: fixed; bottom: 24px; right: 24px; z-index: 999999; background: #ff7a00; color: #ffffff; padding: 10px 18px; border-radius: 30px; font-family: 'Inter', sans-serif; text-decoration: none; border: none; font-size: 13px; font-weight: 600; display: inline-flex; align-items: center; gap: 8px; transition: transform 0.2s;">
       &larr; Back to Portal
     </a>
   `;

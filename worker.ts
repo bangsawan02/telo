@@ -58,20 +58,18 @@ app.all('/telonime/*', async (c) => {
         html = injectFloatingButton(html);
       }
 
-      c.status(response.status as any);
-      resHeaders.forEach((value, key) => {
-        c.header(key, value);
+      return new Response(html, {
+        status: response.status,
+        headers: resHeaders,
       });
-      return c.html(html);
     } else if (contentType.includes('text/css')) {
       let css = await response.text();
       css = css.replace(/url\((["']?)\/(?!\/)/g, 'url($1/telonime/');
       
-      c.status(response.status as any);
-      resHeaders.forEach((value, key) => {
-        c.header(key, value);
+      return new Response(css, {
+        status: response.status,
+        headers: resHeaders,
       });
-      return c.text(css);
     }
 
     return new Response(response.body, {
@@ -163,20 +161,18 @@ app.all('/teloapk/*', async (c) => {
       html = html.replace(/<\/head>/i, modernCss + '</head>');
       html = injectFloatingButton(html);
 
-      c.status(response.status as any);
-      resHeaders.forEach((value, key) => {
-        c.header(key, value);
+      return new Response(html, {
+        status: response.status,
+        headers: resHeaders,
       });
-      return c.html(html);
     } else if (contentType.includes('text/css')) {
       let css = await response.text();
       css = css.replace(/url\((["']?)\/(?!\/)/g, 'url($1/teloapk/');
 
-      c.status(response.status as any);
-      resHeaders.forEach((value, key) => {
-        c.header(key, value);
+      return new Response(css, {
+        status: response.status,
+        headers: resHeaders,
       });
-      return c.text(css);
     }
 
     return new Response(response.body, {
