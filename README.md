@@ -18,7 +18,6 @@ Selamat datang di **TeloAPK & Telonime Cloud Portal** — Platform web modern un
 
 - **Backend**: Node.js + Express
 - **Frontend**: React + TypeScript + Tailwind CSS
-- **Database**: Firebase Firestore
 - **Storage**: GitHub Releases CDN Cloud
 
 ---
